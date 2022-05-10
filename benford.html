@@ -1,0 +1,37 @@
+<script>
+var freq = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var hist = ['', '', '', '', '', '', '', '', ''];
+var p;
+var cont = 0;
+
+var numero = Number(prompt("Insira o " + ++cont + "o número (sair = -1): "));
+
+while (numero != -1) {
+	p = primeiroDigito(numero);
+	freq[p - 1]++;
+	hist[p - 1] += '*';
+	numero = Number(prompt("Insira o " + ++cont + "o número (sair = -1): "));
+}
+
+cont--;
+
+document.write("<h1>Lei de Benford</h1>");
+
+for (var i = 0; i < 9; i++) {
+	document.write((i + 1) + " = " + hist[i] + " " + freq[i] + " (" + Math.floor(100 * freq[i] / cont) + "%)<br>");
+}
+
+document.write("Tamanho da amostra = " + cont);
+
+// função utilitária
+function primeiroDigito(numero) {
+	var dig = numero;
+	var fator = 10;
+	
+	while (dig >= 10) {
+		dig = Math.floor((dig) / 10);
+	}
+
+	return dig;
+}
+</script>

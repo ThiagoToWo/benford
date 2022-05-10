@@ -1,0 +1,37 @@
+<script src="benford.js"></script>
+<script>
+var freq = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var hist = ['', '', '', '', '', '', '', '', ''];
+var freq2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var hist2 = ['', '', '', '', '', '', '', '', ''];
+var rand;
+var p;
+var limite = Number(prompt("Insira o limite de teste: "));
+
+document.write("<h1>Lei de Benford</h1>");
+
+document.write("<h3>Em sequência (1 a " + limite + ")</h3>");
+
+for (var i = 1; i <= limite; i++) {
+	p = primeiroDigito(i);
+	freq[p - 1]++;
+	hist[p - 1] += '*';
+}
+
+for (var i = 0; i < 9; i++) {
+	document.write((i + 1) + " = " + hist[i] + " " + freq[i] + " (" + Math.floor(100 * freq[i] / limite) + "%)<br>");
+}
+
+document.write("<h3>" + limite + " números aleatórios (1 a " + limite + ")</h3>");
+
+for (var i = 1; i <= limite; i++) {
+	rand = Math.floor(1 + Math.random() * limite);
+	p = primeiroDigito(rand);
+	freq2[p - 1]++;
+	hist2[p - 1] += '*';
+}
+
+for (var i = 0; i < 9; i++) {
+	document.write((i + 1) + " = " + hist2[i] + " " + freq2[i] + " (" + Math.floor(100 * freq2[i] / limite) + "%)<br>");
+}
+</script>
